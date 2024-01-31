@@ -2,3 +2,71 @@
     color: red;
     margin-top: 5px;
 }
+
+.gclpas-table .select2-container .select2-search--inline .select2-search__field {
+    padding-left: 8px;
+    padding-right: 20px;
+}
+
+.gclpas-sub-row {
+    display: none;
+}
+
+.gclpas-note {
+    margin-top: 8px;
+}
+
+/** Checkbox switch CSS */
+label.gclpas-switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 22px;
+}
+label.gclpas-switch {
+    cursor: pointer;
+}
+
+label.gclpas-switch input[type="checkbox"] {
+    display: none;
+}
+
+label.gclpas-switch input:checked + .gclpas-slider {
+    background-color: #6659bf;
+  }
+
+.gclpas-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.gclpas-slider {
+    border-radius: 20px;
+    box-shadow: 2px 2px 30px rgb(0 0 0 / 20%);
+}
+
+input.gclpas-checkbox:checked + .gclpas-slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(36px);
+  }
+
+.gclpas-slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 0;
+    bottom: 0px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
