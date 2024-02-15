@@ -17,33 +17,33 @@ if(isset($_POST["submit"])) {
 
         if(!empty($new_author) && !empty($post_type) && !empty($post_status) && !empty($author_from)) {
 
-            $sql_post_type = array_map( function($type) { return "post_type = '$type'"; }, $post_type );
-            $sql_post_status = array_map( function($status) { return "post_status = '$status'"; }, $post_status );
-            $sql_author_from = array_map( function($from_author) { return "post_author = '$from_author'"; }, $author_from );
+        $sql_post_type = array_map( function($type) { return "post_type = '$type'"; }, $post_type );
+        $sql_post_status = array_map( function($status) { return "post_status = '$status'"; }, $post_status );
+        $sql_author_from = array_map( function($from_author) { return "post_author = '$from_author'"; }, $author_from );
 
-            $query_post_type = implode(" OR ",$sql_post_type);
-            $query_post_status = implode(" OR ",$sql_post_status);
-            $query_author_from = implode(" OR ",$sql_author_from);
+        $query_post_type = implode(" OR ",$sql_post_type);
+        $query_post_status = implode(" OR ",$sql_post_status);
+        $query_author_from = implode(" OR ",$sql_author_from);
 
-            $update_query = $wpdb->query( 
-                $wpdb->prepare( "UPDATE $wpdb->posts SET post_author = %d WHERE ( $query_post_type ) AND ( $query_post_status ) AND ( $query_author_from )", $new_author ),
-            );
+        $update_query = $wpdb->query( 
+            $wpdb->prepare( "UPDATE $wpdb->posts SET post_author = %d WHERE ( $query_post_type ) AND ( $query_post_status ) AND ( $query_author_from )", $new_author ),
+        );
 
             if(!empty($update_query)) {
                 // Success returns rows affected
                 $show_msg = array( "type" => "success", "message" => __("Successfully updated author of $update_query number of posts.","post-author-switcher") );
-            }else{
+                            }else{
                 // There was an error.
                 $show_msg = array( "type" => "info", "message" => __("Not found any posts related to selected author.","post-author-switcher") );
-            }
+                            }
         }else{
-            $show_msg = array( "type" => "error", "message" => __("Please feel out all fields correctly.","post-author-switcher") );
+                        $show_msg = array( "type" => "error", "message" => __("Please feel out all fields correctly.","post-author-switcher") );
         }
     }
 }
 ?>
 <div class="wrap">
-    <h1><?php echo esc_html__('Post Author Switcher','post-author-switcher'); ?></h1>
+        <h1><?php echo esc_html__('Post Author Switcher','post-author-switcher'); ?></h1>
 
     <form method="post" id="post_author_switcher">
         <input type="hidden" name="gclpas_nonce" value="<?php echo esc_attr( wp_create_nonce( 'gclpas_security_nonce' ) ); ?>">
@@ -65,7 +65,7 @@ if(isset($_POST["submit"])) {
             <tbody>
                 <tr>
                     <th scope="row">
-                        <label for=""><?php echo esc_html__('Select Post Type','post-author-switcher'); ?></label>
+                                                <label for=""><?php echo esc_html__('Select Post Type','post-author-switcher'); ?></label>
                     </th>
                     <td class="gclpas-containertd">
                         <label class="gclpas-containercheckbox">
@@ -80,7 +80,7 @@ if(isset($_POST["submit"])) {
                                 <?php
                             }
                         } ?>
-                        <div class="gclpas-note"><i><?php echo esc_html__('Select post type to switch author of posts.','post-author-switcher'); ?></i></div>
+                                                <div class="gclpas-note"><i><?php echo esc_html__('Select post type to switch author of posts.','post-author-switcher'); ?></i></div>
                         <div class="gclpas-error gclpas-post-type-error"></div>
                     </td>
                 </tr>
