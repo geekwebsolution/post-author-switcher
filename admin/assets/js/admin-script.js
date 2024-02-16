@@ -31,6 +31,7 @@ jQuery(document).ready(function ($) {
 
     /** select2 for author list field */
     var $select_box = jQuery('.gclpas_select_author');
+    var $exclude_user = (jQuery('#user_id').length > 0) ? jQuery('#user_id').val() : '';
     $select_box.select2({
         minimumInputLength: 3,
         width: 'resolve',
@@ -42,7 +43,7 @@ jQuery(document).ready(function ($) {
             data: (params) => {
                 return {
                     'search': params.term,
-                    'exclude': (jQuery($select_box).data("exclude-user")) ? jQuery($select_box).data("exclude-user") : '',
+                    'exclude': $exclude_user,
                     'action': 'gclpas_author_list'
                 }
             },
@@ -66,7 +67,7 @@ jQuery(document).ready(function ($) {
 
         if(jQuery('#gclpas_switch_author_status').length > 0 && jQuery('#gclpas_switch_author_status').is(":checked")) {
           
-            //Asynchronous Transfer 
+            // validate post type 
             if(jQuery('input[name="gclpas_post_type[]"]:checked').length == 0) {
                 validate = true;
                 jQuery(".gclpas-post-type-error").text("Please select at least one post type.");
@@ -74,7 +75,7 @@ jQuery(document).ready(function ($) {
                 jQuery(".gclpas-post-type-error").text("");
             }
 
-            //Asynchronous Transfer 
+            // validate post status
             if(jQuery('input[name="gclpas_post_status[]"]:checked').length == 0) {
                 validate = true;
                 jQuery(".gclpas-post-status-error").text("Please select at least one post status.");
@@ -82,6 +83,7 @@ jQuery(document).ready(function ($) {
                 jQuery(".gclpas-post-status-error").text("");
             }
 
+            // validate switch author to
             if(jQuery('#gclpas_switch_author_to option:selected').length == 0) {
                 validate = true;
                 jQuery(".gclpas-select-author-to-error").text("Please select at least one author.");
@@ -100,7 +102,7 @@ jQuery(document).ready(function ($) {
     jQuery('#post_author_switcher').on('submit', function (event) {
         var validate = false;
           
-        //Asynchronous Transfer 
+        // validate post type 
         if(jQuery('input[name="gclpas_post_type[]"]:checked').length == 0) {
             validate = true;
             jQuery(".gclpas-post-type-error").text("Please select at least one post type.");
@@ -108,6 +110,15 @@ jQuery(document).ready(function ($) {
             jQuery(".gclpas-post-type-error").text("");
         }
 
+        // validate post status
+        if(jQuery('input[name="gclpas_post_status[]"]:checked').length == 0) {
+            validate = true;
+            jQuery(".gclpas-post-status-error").text("Please select at least one post status.");
+        }else{
+            jQuery(".gclpas-post-status-error").text("");
+        }
+
+        // validate switch author from
         if(jQuery('#gclpas_switch_author_from option:selected').length == 0) {
             validate = true;
             jQuery(".gclpas-select-author-from-error").text("Please select at least one author.");
@@ -115,6 +126,7 @@ jQuery(document).ready(function ($) {
             jQuery(".gclpas-select-author-from-error").text("");
         }
 
+        // validate switch author to
         if(jQuery('#gclpas_switch_author_to option:selected').length == 0) {
             validate = true;
             jQuery(".gclpas-select-author-to-error").text("Please select at least one author.");

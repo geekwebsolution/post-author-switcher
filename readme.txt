@@ -13,6 +13,19 @@ This plugin will help you to switch post author of multiple posts at one click. 
 
 By using this plugin you can easily change thousands number of post author to new post author. Additionally you can switch post author by post type, post authors and post status.
 
+You can switch post authors of multiple number of posts.
+
+**How to use the plugin?**
+
+<p>After installing the plugin, select "post type", "post status" and select "switch author from", then select new author you want to assign to filtered posts.</p>
+<p>You can also switch post author from user edit screen. To do that go to that user edit page which user you want to change with new post author.</p>
+
+
+**Free Features**
+🔹 Easy to configure
+🔹 Switch author by all post type 
+🔹 Switch author by post status
+🔹 Switch author from existing selected post author
 
 == Installation ==
 
@@ -28,7 +41,7 @@ After this, you will get a new window, here in the search box enter our plugin n
 
 For manual installation, the first step is you need to download the plugin. Extract the .zip file and just drop the contents in the <strong>wp-content/plugins/</strong> directory of your WordPress installation and then activate the plugin from the <strong>Plugins page</strong>.
 
-After activating the plugin, go to <strong>Post Author Switcher</strong> and start plugin configuration to Switch Post Author.
+After activating the plugin, go to Admin Dashboard -> <strong>Post Author Switcher</strong> and start plugin configuration to Switch Post Authors.
 
 
 == Screenshots ==

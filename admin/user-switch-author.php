@@ -60,7 +60,7 @@ if( !class_exists('GCLPAS_Switch_User') ) {
                             }
                             $gclpas_get_author = get_users( $get_user_args );
                             ?>
-                            <select name="gclpas_switch_author_to" id="gclpas_switch_author_to" class="gclpas_select_author" data-placeholder="Search Author" data-exclude-user="<?php echo esc_attr(isset($_GET["user_id"]) ? $_GET["user_id"] : ''); ?>" style="width: 25em;"></select>
+                            <select name="gclpas_switch_author_to" id="gclpas_switch_author_to" class="gclpas_select_author" data-placeholder="Search Author" style="width: 25em;"></select>
                             <div class="gclpas-note" style="margin-top: 10px;"><i><?php echo esc_html__('Select new author which you want as new author of posts.','post-author-switcher'); ?></i></div>
                             <div class="gclpas-error gclpas-select-author-to-error"></div>
                         </td>
