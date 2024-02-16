@@ -25,6 +25,8 @@ define("GCLPAS_TEXT_DOMAIN", 'post-author-switcher');
 
 require_once(GCLPAS_PLUGIN_DIR_PATH . '/functions.php');
 
+require_once(GCLPAS_PLUGIN_DIR_PATH . '/admin/user-switch-author.php');
+
 $plugin = plugin_basename(__FILE__);
 add_filter("plugin_action_links_$plugin", 'gclpas_plugin_add_settings_link');
 
