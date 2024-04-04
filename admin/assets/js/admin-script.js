@@ -42,6 +42,7 @@ jQuery(document).ready(function ($) {
             dataType: 'json',
             data: (params) => {
                 return {
+                    'ajaxnonce': gclpasObj.ajaxnonce,
                     'search': params.term,
                     'exclude': $exclude_user,
                     'action': 'gclpas_author_list'

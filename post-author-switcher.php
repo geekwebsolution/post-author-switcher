@@ -4,11 +4,10 @@
  * Description:       This plugin can help you to switch post author of multiple posts at one click. You have option to switch post author by post type & from another user instead of selected post author. 
  * Author:            Geek Code Lab
  * Author URI:        https://geekcodelab.com/
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * License:       	  GPLv2 or later
  * Text Domain:       post-author-switcher
- * Version:           1.0
+ * Version:           1.0.0
  */
-
 if (!defined('ABSPATH')) exit;
 
 if (!defined("GCLPAS_PLUGIN_DIR_PATH"))
@@ -19,7 +18,7 @@ if (!defined("GCLPAS_PLUGIN_URL"))
 
 	define("GCLPAS_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
 
-define("GCLPAS_BUILD", '1.0');
+define("GCLPAS_BUILD", '1.0.0');
 
 define("GCLPAS_TEXT_DOMAIN", 'post-author-switcher');
 
