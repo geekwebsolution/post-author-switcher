@@ -47,6 +47,7 @@ if( !class_exists('GCLPAS_Functions') ) {
         public function gclpas_author_list_ajax_callback() {
             $result = array();
             $search = sanitize_text_field($_POST['search']);
+            $exclude_author = (isset($_REQUEST['exclude']) && !empty($_REQUEST['exclude'])) ? sanitize_text_field($_REQUEST['exclude']) : "";
 
             if(wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST[ 'ajaxnonce' ] ) ), 'gclpas_security_ajaxnonce' )) {
                 
@@ -55,7 +56,7 @@ if( !class_exists('GCLPAS_Functions') ) {
                     'search'           => '*'.$search.'*',
                     'search_columns'   => array( 'ID', 'user_login', 'user_email', 'display_name' ),
                     'capability__in'   => 'edit_posts',
-                    'exclude' =>  (isset($_REQUEST['exclude']) && !empty($_REQUEST['exclude'])) ? array( $_REQUEST['exclude'] ) : array()
+                    'exclude' =>  (isset($exclude_author) && !empty($exclude_author)) ? array( $exclude_author ) : array()
                 ));
 
                 foreach ($gclpas_get_author as $gclpas_author) {
@@ -69,7 +70,7 @@ if( !class_exists('GCLPAS_Functions') ) {
             }
             
             if($result) {
-                _e(wp_json_encode($result));
+                echo html_entity_decode(esc_html(wp_json_encode($result)));
             }
 
             wp_die();

@@ -40,9 +40,10 @@ if( !class_exists('GCLPAS_Switch_User') ) {
                             </label>
                             <?php 
                             if(count($post_types) > 0 && !empty($post_types)) {
-                                foreach($post_types as $post_type) { ?>
+                                foreach($post_types as $post_type) { 
+                                    $ucfirst = ucfirst($post_type); ?>
                                     <label class="gclpas-containercheckbox">
-                                        <input type="checkbox" name="gclpas_post_type[]" value="<?php esc_attr_e($post_type); ?>"><?php esc_html_e(ucfirst($post_type)); ?>
+                                        <input type="checkbox" name="gclpas_post_type[]" value="<?php echo esc_attr($post_type); ?>"><?php echo esc_html($ucfirst); ?>
                                     </label>
                                     <?php
                                 }
@@ -57,7 +58,8 @@ if( !class_exists('GCLPAS_Switch_User') ) {
                             <?php
                             $get_user_args = array( 'capability__in'   => 'edit_posts' );
                             if(isset($_GET["user_id"])) {
-                                $get_user_args = array_merge( array( 'exclude' => array( $_GET["user_id"] ) ), $get_user_args );
+                                $us_id = (!empty($_GET["user_id"])) ? sanitize_text_field($_GET["user_id"]) : 0;
+                                $get_user_args = array_merge( array( 'exclude' => array( $us_id ) ), $get_user_args );
                             }
                             $gclpas_get_author = get_users( $get_user_args );
                             ?>
@@ -79,7 +81,7 @@ if( !class_exists('GCLPAS_Switch_User') ) {
                             if(count($post_status) > 0 && !empty($post_status)) {
                                 foreach($post_status as $key => $value) { ?>
                                     <label class="gclpas-containercheckbox">
-                                        <input type="checkbox" name="gclpas_post_status[]" value="<?php esc_attr_e($key); ?>" checked><?php esc_html_e($value); ?>
+                                        <input type="checkbox" name="gclpas_post_status[]" value="<?php echo esc_attr($key); ?>" checked><?php echo esc_html($value); ?>
                                     </label>
                                     <?php
                                 }
@@ -95,7 +97,7 @@ if( !class_exists('GCLPAS_Switch_User') ) {
 
         public function gclpas_user_profile_update_action($user_id) {
 
-            if ( isset( $_REQUEST['gclpas-user-meta-nonce'] ) && wp_verify_nonce( $_REQUEST['gclpas-user-meta-nonce'], 'gclpas-user-meta-nonce-action' ) ) {
+            if ( isset( $_REQUEST['gclpas-user-meta-nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash($_REQUEST['gclpas-user-meta-nonce']) ), 'gclpas-user-meta-nonce-action' ) ) {
                 $status_switch_author = (isset($_POST["gclpas_switch_author_status"]) && !empty($_POST["gclpas_switch_author_status"])) ? 1 : 0;
 
                 if(isset($status_switch_author) && !empty($status_switch_author)) {
@@ -112,7 +114,7 @@ if( !class_exists('GCLPAS_Switch_User') ) {
                         $query_post_type = implode("', '", $post_type);
                         $query_post_status = implode("', '", $post_status);
 
-                        $where_sql = sprintf('( post_type = %s ) AND ( post_status IN (%s) ) AND ( post_author = %s )', '%s', '%s', '%s');
+                        $where_sql = sprintf('( post_type IN (%s) ) AND ( post_status IN (%s) ) AND ( post_author = %s )', '%s', '%s', '%s');
 
                         $update_query = $wpdb->query( stripslashes($wpdb->prepare( "UPDATE {$wpdb->posts} SET post_author = %d WHERE {$where_sql}", $new_author, $query_post_type, $query_post_status, $author_from )) );
                     }
