@@ -20,14 +20,10 @@ if (!defined("GCLPAS_PLUGIN_URL"))
 
 define("GCLPAS_BUILD", '1.0.0');
 
-define("GCLPAS_TEXT_DOMAIN", 'post-author-switcher');
-
 require_once(GCLPAS_PLUGIN_DIR_PATH . '/functions.php');
-
 require_once(GCLPAS_PLUGIN_DIR_PATH . '/admin/user-switch-author.php');
 
-$plugin = plugin_basename(__FILE__);
-add_filter("plugin_action_links_$plugin", 'gclpas_plugin_add_settings_link');
+add_filter("plugin_action_links_post-author-switcher/post-author-switcher.php", 'gclpas_plugin_add_settings_link');
 
 function gclpas_plugin_add_settings_link($links){
 	$support_link = '<a href="https://geekcodelab.com/contact/"  target="_blank" >' . __('Support','post-author-switcher') . '</a>';

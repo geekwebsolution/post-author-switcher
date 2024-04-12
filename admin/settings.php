@@ -23,7 +23,7 @@ if(isset($_POST["submit"])) {
             $query_post_status = implode("', '", $post_status);
             $query_author_from = implode("', '", $author_from);
 
-            $where_sql = sprintf('( post_type = %s ) AND ( post_status IN (%s) ) AND ( post_author = %s )', '%s', '%s', '%s');
+            $where_sql = sprintf('( post_type IN (%s) ) AND ( post_status IN (%s) ) AND ( post_author = %s )', '%s', '%s', '%s');
 
             $update_query = $wpdb->query( stripslashes($wpdb->prepare( "UPDATE {$wpdb->posts} SET post_author = %d WHERE {$where_sql}", $new_author, $query_post_type, $query_post_status, $query_author_from )) );
 
@@ -39,20 +39,22 @@ if(isset($_POST["submit"])) {
         }
     }
 }
+
+$nonce = wp_create_nonce( 'gclpas_security_nonce' );
 ?>
 <div class="wrap">
-    <h1><?php echo esc_html__('Post Author Switcher','post-author-switcher'); ?></h1>
+    <h1><?php esc_html_e('Post Author Switcher','post-author-switcher'); ?></h1>
 
     <form method="post" id="post_author_switcher">
-        <input type="hidden" name="gclpas_nonce" value="<?php esc_attr_e( wp_create_nonce( 'gclpas_security_nonce' ) ); ?>">
+        <input type="hidden" name="gclpas_nonce" value="<?php echo esc_attr( $nonce ); ?>">
 
         <?php
         if (isset($show_msg) && !empty($show_msg)) {
-            $admin_notice_msg = sprintf( '<strong>%1$s</strong>', $show_msg['message'] );
+            $admin_notice_msg = sprintf( '<strong>%1$s</strong>', esc_html($show_msg['message']) );
             wp_admin_notice(
                 $admin_notice_msg,
                 array(
-                    'type'        => $show_msg['type'],
+                    'type'        => esc_html($show_msg['type']),
                     'dismissible' => false,
                     'id'          => 'message'
                 )
@@ -71,9 +73,10 @@ if(isset($_POST["submit"])) {
                         </label>
                         <?php 
                         if(count($post_types) > 0 && !empty($post_types)) {
-                            foreach($post_types as $post_type) { ?>
+                            foreach($post_types as $post_type) {
+                                $ucfirst = ucfirst($post_type); ?>
                                 <label class="gclpas-containercheckbox">
-                                    <input type="checkbox" name="gclpas_post_type[]" value="<?php esc_html_e($post_type); ?>"><?php esc_html_e(ucfirst($post_type)); ?>
+                                    <input type="checkbox" name="gclpas_post_type[]" value="<?php echo esc_attr($post_type); ?>"><?php echo esc_html($ucfirst); ?>
                                 </label>
                                 <?php
                             }
