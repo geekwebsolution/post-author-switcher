@@ -6,7 +6,7 @@
  * Author URI:        https://geekcodelab.com/
  * License:       	  GPLv2 or later
  * Text Domain:       post-author-switcher
- * Version:           1.0.0
+ * Version:           1.0.1
  */
 if (!defined('ABSPATH')) exit;
 
@@ -18,7 +18,7 @@ if (!defined("GCLPAS_PLUGIN_URL"))
 
 	define("GCLPAS_PLUGIN_URL", plugins_url() . '/' . basename(dirname(__FILE__)));
 
-define("GCLPAS_BUILD", '1.0.0');
+define("GCLPAS_BUILD", '1.0.1');
 
 require_once(GCLPAS_PLUGIN_DIR_PATH . '/functions.php');
 require_once(GCLPAS_PLUGIN_DIR_PATH . '/admin/user-switch-author.php');
