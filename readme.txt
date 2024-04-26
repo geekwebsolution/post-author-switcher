@@ -5,7 +5,7 @@ Tags: Post author,switch author
 Requires PHP: 7.4
 Requires at least: 6.4
 Tested up to: 6.5
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 
 This plugin will help you to switch post author of multiple posts at one click. Additionally you have option to switch post author by post authors, post type or post status.
@@ -55,6 +55,9 @@ After activating the plugin, go to Admin Dashboard -> <strong>Post Author Switch
 
 
 == Changelog ==
+= 1.0.2 =
+  Fixed translation bug
+
 = 1.0.1 =
   Fixed escape and translate bugs
 
