@@ -29,7 +29,7 @@ if(isset($_POST["submit"])) {
 
             if(!empty($update_query)) {
                 // Success returns rows affected
-                $show_msg = array( "type" => "success", "message" => __( sprintf( 'Successfully updated author of %1$s number of posts.', $update_query ) , 'post-author-switcher') );
+                $show_msg = array( "type" => "success", "message" => sprintf(__('Successfully updated author of %1$s number of posts.','post-author-switcher'), $update_query ) , 'post-author-switcher') );
             }else{
                 // There was an error.
                 $show_msg = array( "type" => "info", "message" => __( "Not found any posts related to selected author.","post-author-switcher" ) );
