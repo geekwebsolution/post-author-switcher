@@ -6,10 +6,10 @@
  * Author URI:        https://geekcodelab.com/
  * License:       	  GPLv2 or later
  * Text Domain:       post-author-switcher
- * Version:           1.0.2
+ * Version:           1.1.0
  */
 if (!defined('ABSPATH')) exit;
-define("GCLPAS_BUILD", '1.0.2');
+define("GCLPAS_BUILD", '1.1.0');
 
 if (!defined("GCLPAS_PLUGIN_BASENAME"))
 	define("GCLPAS_PLUGIN_BASENAME", plugin_basename(__FILE__));
