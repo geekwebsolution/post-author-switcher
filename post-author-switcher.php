@@ -28,6 +28,9 @@ require_once(GCLPAS_PLUGIN_DIR_PATH . '/functions.php');
 require_once(GCLPAS_PLUGIN_DIR_PATH . '/admin/user-switch-author.php');
 require (GCLPAS_PLUGIN_DIR_PATH .'updater/updater.php');
 
+register_activation_hook(__FILE__, 'gclpas_updater_activate');
+add_action('upgrader_process_complete', 'gclpas_updater_activate'); // remove  transient  on plugin  update
+
 add_filter("plugin_action_links_post-author-switcher/post-author-switcher.php", 'gclpas_plugin_add_settings_link');
 
 function gclpas_plugin_add_settings_link($links){
@@ -38,5 +41,3 @@ function gclpas_plugin_add_settings_link($links){
 	array_unshift($links, $settings_link);
 	return $links;
 }
-
-add_action('upgrader_process_complete', 'gclpas_updater_activate'); // remove  transient  on plugin  update

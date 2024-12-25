@@ -19,7 +19,6 @@ function gclpas_updater_utility() {
     return $settings;
 }
 
-register_activation_hook(__FILE__, 'gclpas_updater_activate');
 function gclpas_updater_activate() {
 
     // Refresh transients
